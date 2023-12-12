@@ -35,6 +35,9 @@ body{
 
 
 }
+.mot{
+    display: flex;
+}
 .definition{
     display: flex;
     margin: 2px;
@@ -51,8 +54,22 @@ body{
   
 }
 .wrapper ul{
-    display: none;
+    /* display: none; */
+    height: 0;
+    opacity: 0;
+   overflow: hidden;
+   transition: all 0.25 ease;
 }
+.wrapper.active ul{
+    display: block;
+    height: 303px;
+    opacity: 1;
+}
+ul .content{
+    max-height: 215px;
+    overflow: auto;
+}
+
 .content li .details p{
     font-size: 15px;
     font-weight: 500;
@@ -60,6 +77,9 @@ body{
 .content li .details span{
     font-size: 15px;
     color: #7e7e7e;
+}
+.wrapper.active .info-text{
+    display: none;
 }
 .wrapper .info-text{
   font-size: 18px;  
