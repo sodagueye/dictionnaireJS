@@ -1,9 +1,10 @@
-const wrapper = document.querySelector(".wrapper");
-const searchInput = document.querySelector("input");
-const infoText = document.querySelector(".info-text");
-const synonyms = document.querySelector(".synonyms .list");
-const volume =document.querySelector(" audio")
-let audio;
+let wrapper = document.querySelector(".wrapper");
+let searchInput = document.querySelector("input");
+let infoText = document.querySelector(".info-text");
+let synonyms = document.querySelector(".synonyms .list");
+let sound = document.getElementById("sound");
+let audio=document.getElementById("audioB");
+
 // Fonction de données 
 function data(result ,word){
     //  console.log(result)
@@ -20,11 +21,19 @@ function data(result ,word){
          document.querySelector(".meaning span").innerText= definitions.definition;
     
         // creating new audio obj and passing audio src
-        audio =new Audio("https:"+result[0].phonetics[0].audio) ;
-        
-
-    }
+        // let sound = document.getElementById("sound");
+        let son =`Accent americain <br><audio src=${result[0].phonetics[0].audio} controls ></audio>`
+        sound.innerHTML = son;
+     
+        let sonB =`Accent britanik <br><audio src=${result[0].phonetics[1].audio} controls ></audio>`
+       audio.innerHTML = sonB;
+       
+   }
+     sound.innerHTML += "";
+    audio.innerHTML += "";
+    
 }
+
 // flech api function
 function fetchApi(word){
     infoText.innerHTML = `Searching the meaning of <span>"${word}"</span>`;
@@ -40,9 +49,6 @@ searchInput.addEventListener(`keyup`,e => {
     if(e.key== "Enter" && e.target.value){
         fetchApi(e.target.value)
 }
-//  searchInput.value="";
-});
-volume.addEventListener('click',()=>{
-    audio.play();
+
 });
 
